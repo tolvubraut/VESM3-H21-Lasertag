@@ -1,0 +1,14 @@
+{'gameid': 5, 'playerX': {'score': 2}, 'playerY': {'score': 2}, 'stats': {'some interesting stats': 'stats'}}
+{'gameid': 3, 'playerX': {'score': 1}, 'playerY': {'score': 6}, 'stats': {'some interesting stats': 'stats'}}
+{'gameid': 10, 'playerX': {'score': 1}, 'playerY': {'score': 9}, 'stats': {'some interesting stats': 'stats'}}
+{'gameid': 9, 'playerX': {'score': 3}, 'playerY': {'score': 3}, 'stats': {'some interesting stats': 'stats'}}
+{'gameid': 10, 'playerX': {'score': 7}, 'playerY': {'score': 5}, 'stats': {'some interesting stats': 'stats'}}
+{'gameid': 10, 'playerX': {'score': 1}, 'playerY': {'score': 3}, 'stats': {'some interesting stats': 'stats'}}
+{'gameid': 10, 'playerX': {'score': 8}, 'playerY': {'score': 6}, 'stats': {'some interesting stats': 'stats'}}
+{'gameid': 7, 'playerX': {'score': 9}, 'playerY': {'score': 9}, 'stats': {'some interesting stats': 'stats'}}
+{'gameid': 7, 'playerX': {'score': 8}, 'playerY': {'score': 6}, 'stats': {'some interesting stats': 'stats'}}
+{'gameid': 9, 'playerX': {'score': 7}, 'playerY': {'score': 1}, 'stats': {'some interesting stats': 'stats'}}
+{'gameid': 3, 'playerX': {'score': 5}, 'playerY': {'score': 1}, 'stats': {'some interesting stats': 'stats'}}
+{'gameid': 1, 'playerX': {'score': 4}, 'playerY': {'score': 5}, 'stats': {'some interesting stats': 'stats'}}
+{'gameid': 8, 'playerX': {'score': 5}, 'playerY': {'score': 1}, 'stats': {'some interesting stats': 'stats'}}
+{'gameid': 10, 'playerX': {'score': 10}, 'playerY': {'score': 4}, 'stats': {'some interesting stats': 'stats'}}
