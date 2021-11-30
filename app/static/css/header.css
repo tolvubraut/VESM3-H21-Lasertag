@@ -1,0 +1,22 @@
+.header-wrapper {
+    background-color: #2b1212;
+}
+
+.header {
+    display:flex;
+}
+
+.nav-link {
+    padding: 10px;
+}
+
+.header-container {
+    width: 1320px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 1320px){
+    .header-container {
+        width: auto;
+    }
+}

@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return 'dab 420 blaze it OwO'
+    return render_template("test.html")
 
 @app.route("/scoreboard_post", methods=["POST"])
 def scoreboard_post():
@@ -17,11 +17,15 @@ def scoreboard_post():
 
 @app.route('/demo')
 def demo():
-    return {"response":db.get_data()}
+    return render_template("test.html", response={"response":db.get_data()})
+
+@app.route('/test')
+def test():
+    return render_template("scoreboard.html")
 
 @app.errorhandler(405)
 def err(e):
     return redirect('/')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)

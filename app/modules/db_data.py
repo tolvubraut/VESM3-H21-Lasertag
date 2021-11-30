@@ -1,6 +1,5 @@
 from pathlib import Path
 
-DATA_PATH = "../data/"
 class DbData:
     def __init__(self, data_file):
         # Gets data folder and appends the file to the path
