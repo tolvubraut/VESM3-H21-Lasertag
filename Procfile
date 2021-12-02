@@ -1,2 +1,2 @@
-web: sh /app/run.sh
+web: gunicorn app:app
 heroku ps:scale web=1
