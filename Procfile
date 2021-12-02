@@ -1,2 +1,2 @@
-web:gunicorn app:application.app
-heroku ps:scale web=2
+web: gunicorn app:app
+heroku ps:scale web=1
