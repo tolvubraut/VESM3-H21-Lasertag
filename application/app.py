@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, redirect, url_for
-from application.modules.db_data import DbData
+from modules.db_data import DbData
 
 db = DbData(data_file="data.json")
 app = Flask(__name__)
