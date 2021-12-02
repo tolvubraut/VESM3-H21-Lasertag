@@ -1,2 +1,2 @@
-web: gunicorn app:application.app
+web: gunicorn --pythonpath application app
 heroku ps:scale web=1
