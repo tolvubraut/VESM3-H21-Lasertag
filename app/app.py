@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template, redirect, url_for
 from modules.db_data import DbData
-import os
 
 db = DbData(data_file="data.json")
 app = Flask(__name__)
@@ -25,4 +24,5 @@ def err(e):
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port = os.environ.get('PORT', 8080))
+    from os import environ
+    app.run(port = environ.get('PORT', 8080))
