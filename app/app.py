@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, url_for
 from modules.db_data import DbData
 
 db = DbData(data_file="data.json")
@@ -21,7 +21,7 @@ def scoreboard_post():
 
 @app.errorhandler(405)
 def err(e):
-    return redirect('/')
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run()
