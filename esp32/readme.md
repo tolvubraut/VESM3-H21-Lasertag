@@ -6,3 +6,7 @@
 [MQTT Safn](https://github.com/plapointe6/EspMQTTClient)
 
 [JSON safn](https://github.com/arduino-libraries/Arduino_JSON)
+
+## Varðandi ESP32 og LDR
+Það er galli með summa pinna þegar er notað EspMQTTClient safnið
+Nota pina nr 33 fyrir LDR

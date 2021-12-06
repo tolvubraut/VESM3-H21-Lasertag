@@ -14,7 +14,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 #define LASER_TRIGGER 18
 
 // LDR
-#define LDR_PIN 2
+#define LDR_PIN 33
 
 // Gamestats
 int bullets = 30; // Initial amount of bullets
@@ -98,8 +98,9 @@ void onConnectionEstablished()
 void loop()
 {
   client.loop();
-  delay(250);
-  //display_render();
+  // Replace delay with a set of millis() to avoid missed inputs
+  delay(33);
+  display_render();
   //bullets = bullets - 1;
 
   // LDR
@@ -109,11 +110,14 @@ void loop()
   // Trigger is being pressed
   if (laserTrigger == 0) {
     Serial.println("Trigger pressed");
+    bullets = bullets -1;
   }
 
   // Laser receiving large amount of light
   // Use median to calculate avg light to get more precise results
+  Serial.println(lightLevel);
   if (lightLevel > 3000) {
-    Serial.println("Got hit");  
+    Serial.println("Got hit");
+    health = health-1;  
   }
 }

@@ -5,8 +5,24 @@
  *
  * For more detail (instruction and wiring diagram), visit https://esp32io.com/tutorials/esp32-light-sensor
  */
+ #include "EspMQTTClient.h"
 
-#define LIGHT_SENSOR_PIN 4 // ESP32 pin GIOP36 (ADC0)
+ EspMQTTClient client(
+  "SiminnE87DE1",
+  "SV4PAYDUMX",
+  "test.mosquitto.org",  // MQTT Broker server ip
+  "",   // Can be omitted if not needed
+  "",   // Can be omitted if not needed
+  "TestClient",     // Client name that uniquely identify your device
+  1883              // The MQTT port, default to 1883. this line can be omitted
+);
+
+void onConnectionEstablished()
+{
+ 
+}
+
+#define LIGHT_SENSOR_PIN 33 // ESP32 pin GIOP36 (ADC0)
 
 void setup() {
   // initialize serial communication at 9600 bits per second:
@@ -14,6 +30,7 @@ void setup() {
 }
 
 void loop() {
+  client.loop();
   // reads the input on analog pin (value between 0 and 4095)
   int analogValue = analogRead(LIGHT_SENSOR_PIN);
 
@@ -32,6 +49,5 @@ void loop() {
   } else {
     Serial.println(" => Very bright");
   }
-
   delay(33);
 }
