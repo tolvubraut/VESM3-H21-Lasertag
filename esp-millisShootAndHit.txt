@@ -7,6 +7,28 @@ bool ison = false;
 unsigned int lasthit = 0;
 bool ishit = false;
 
+int normrn = 2000;
+
+int spiketresh = 200;
+const int DistTestAvarageCount = 100;
+
+
+float dists[DistTestAvarageCount] = {};
+int nextWrite = 0;
+
+void readLight(int light){  
+
+  dists[nextWrite] = light;
+  nextWrite = (nextWrite + 1) % DistTestAvarageCount;
+
+  int sum = 0;
+  for(int i=0;i<DistTestAvarageCount;i++){
+    sum += dists[i];
+  }
+
+  normrn =  sum / DistTestAvarageCount;
+}
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
@@ -18,9 +40,11 @@ void loop() {
   // put your main code here, to run repeatedly:
 
   light = analogRead(A5);
-  //Serial.println(light);
+  readLight(light);
+  Serial.println(normrn);
+  
 
-  if(light > 3200 and millis() - lasthit >= 800 and ishit == false){
+  if(light > normrn + spiketresh and millis() - lasthit >= 800 and ishit == false){
     ishit = true;
     lasthit = millis();
     Serial.println("hit!!!");
@@ -35,6 +59,8 @@ void loop() {
     digitalWrite(34, HIGH);   // turn the LED on (HIGH is the voltage level)
     Serial.print("#");
   }
+
+  
 
   if(millis() - lastchange >= 1000 and ison == false){
     digitalWrite(32, HIGH);   // turn the LED on (HIGH is the voltage level)
