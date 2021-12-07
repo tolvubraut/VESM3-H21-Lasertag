@@ -122,6 +122,7 @@ void onConnectionEstablished()
 void loop()
 {
   client.loop();
+<<<<<<< HEAD
    // LDR og Laser
   if (millis() > SENSOR_lastread + SENSOR_readrate) {
     lightLevel = analogRead(LDR_PIN);
@@ -149,6 +150,14 @@ void loop()
       bullets = bullets -1;
     }
   };
+=======
+  delay(33);
+  // Replace delay with a set of millis() to avoid missed inputs
+
+  /*if () {
+    
+  };*/
+>>>>>>> c8c3a63a1db764f5b0455b0f5d72f24fec26b187
 
   
   // Refresh screen when user fires the laser or looses health
@@ -159,6 +168,7 @@ void loop()
   }
 
   // Laser receiving large amount of light
+<<<<<<< HEAD
   if (lightLevel > 4000) {
     if (millis() > LDR_lastchange + LDR_DELAY) {
       Serial.println("Got hit");
@@ -175,5 +185,15 @@ void loop()
         client.publish(device_topic, "I took damage");
       } 
     } 
+=======
+  Serial.println(lightLevel);
+  if (lightLevel > 3500) {
+    Serial.println("Got hit");
+    health = health-10;  
+
+    if (health <= 0) {
+      //Player died  
+    }
+>>>>>>> c8c3a63a1db764f5b0455b0f5d72f24fec26b187
   }
 }
