@@ -9,18 +9,25 @@
 #define SCREEN_HEIGHT 32 // OLED display height, in pixels
 #define OLED_RESET    -1
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+int previous_bullets;
+int previous_health;
 
 // Laser
 #define LASER_TRIGGER 18
+#define LASER_DELAY 50 // Delay between each shot in MS
+unsigned long laser_time;
+
 
 // LDR
 #define LDR_PIN 33
 
 // Gamestats
+#define ID 0;
 int bullets = 30; // Initial amount of bullets
 int health = 100; // Initial amount of health
 char screen_buffer_ln1[30];
 char screen_buffer_ln2[30];
+char screen_buffer_ln3[30];
 
 void pin_setup(void) {
   pinMode(LASER_TRIGGER, INPUT_PULLUP);
@@ -51,12 +58,12 @@ void display_render(void) {
 }
 
 EspMQTTClient client(
-  "SiminnE87DE1",
-  "SV4PAYDUMX",
+  "Taekniskolinn",
+  "",
   "test.mosquitto.org",  // MQTT Broker server ip
   "",   // Can be omitted if not needed
   "",   // Can be omitted if not needed
-  "TestClient",     // Client name that uniquely identify your device
+  "TestClientv32",     // Client name that uniquely identify your device
   1883              // The MQTT port, default to 1883. this line can be omitted
 );
 
@@ -67,9 +74,6 @@ void setup()
   display_setup();
   // Optional functionalities of EspMQTTClient
   client.enableDebuggingMessages(); // Enable debugging messages sent to serial output
-  client.enableHTTPWebUpdater(); // Enable the web updater. User and password default to values of MQTTUsername and MQTTPassword. These can be overridded with enableHTTPWebUpdater("user", "password").
-  client.enableOTA(); // Enable OTA (Over The Air) updates. Password defaults to MQTTPassword. Port is the default OTA port. Can be overridden with enableOTA("password", port).
-  client.enableLastWillMessage("TestClient/lastwill", "I am going offline");  // You can activate the retain flag by setting the third parameter to true
 }
 
 // This function is called once everything is connected (Wifi and MQTT)
@@ -82,8 +86,12 @@ void onConnectionEstablished()
   });
 
   // Subscribe to "mytopic/wildcardtest/#" and display received message to Serial
-  client.subscribe("dabdabdab6969/telemetry", [](const String & topic, const String & payload) {
-    Serial.println("(From wildcard) topic: " + topic + ", payload: " + payload);
+  client.subscribe("dabdabdab6969/reload", [](const String & topic, const String & payload) {
+    Serial.println(payload);
+    if (payload == "0") {
+      bullets = 30;
+      memset(screen_buffer_ln3, 0, 30);
+    };
   });
 
   // Publish a message to "mytopic/test"
@@ -98,10 +106,20 @@ void onConnectionEstablished()
 void loop()
 {
   client.loop();
-  // Replace delay with a set of millis() to avoid missed inputs
   delay(33);
-  display_render();
-  //bullets = bullets - 1;
+  // Replace delay with a set of millis() to avoid missed inputs
+
+  /*if () {
+    
+  };*/
+
+  
+  // Refresh screen when user fires the laser or looses health
+  if (previous_bullets != bullets or previous_health != health){
+    display_render();
+    previous_bullets = bullets;
+    previous_health = health;
+  }
 
   // LDR
   int lightLevel = analogRead(LDR_PIN);
@@ -111,13 +129,22 @@ void loop()
   if (laserTrigger == 0) {
     Serial.println("Trigger pressed");
     bullets = bullets -1;
+    // Tell user to reload
+    if (bullets <= 0) {
+      sprintf(screen_buffer_ln3, "Reload");
+      display_renderText(screen_buffer_ln3, 0, 20);
+    }  else {
+      
+    }
   }
-
   // Laser receiving large amount of light
-  // Use median to calculate avg light to get more precise results
   Serial.println(lightLevel);
-  if (lightLevel > 3000) {
+  if (lightLevel > 3500) {
     Serial.println("Got hit");
-    health = health-1;  
+    health = health-10;  
+
+    if (health <= 0) {
+      //Player died  
+    }
   }
 }
