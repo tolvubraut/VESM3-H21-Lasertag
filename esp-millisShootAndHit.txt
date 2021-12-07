@@ -1,0 +1,51 @@
+
+int light = 0;
+
+unsigned int lastchange = 0;
+bool ison = false;
+
+unsigned int lasthit = 0;
+bool ishit = false;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(115200);
+  pinMode(32, OUTPUT);
+  pinMode(34, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  light = analogRead(A5);
+  //Serial.println(light);
+
+  if(light > 3200 and millis() - lasthit >= 800 and ishit == false){
+    ishit = true;
+    lasthit = millis();
+    Serial.println("hit!!!");
+  }
+  else if(millis() - lasthit >= 800 and ishit == true){
+    digitalWrite(34, LOW);    // turn the LED off by making the voltage LOW
+    ishit = false;
+    Serial.println("unhit");
+  }
+
+  if(ishit){
+    digitalWrite(34, HIGH);   // turn the LED on (HIGH is the voltage level)
+    Serial.print("#");
+  }
+
+  if(millis() - lastchange >= 1000 and ison == false){
+    digitalWrite(32, HIGH);   // turn the LED on (HIGH is the voltage level)
+    ison = true;
+    lastchange = millis();
+  }
+  else if(millis() - lastchange >= 100 and ison == true){
+    digitalWrite(32, LOW);    // turn the LED off by making the voltage LOW
+    ison = false;
+    lastchange = millis();
+  }
+  //Serial.println(millis() - lastchange);
+
+}

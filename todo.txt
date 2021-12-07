@@ -1,0 +1,22 @@
+/ skota teljari
+x rfid lesa player
+x gefa player skot
+x skjóta
+/ lesa skot
+
+batterí fyrir byssu
+
+finisera kóða fyrir byssu
+
+finisera kóða fyrir main
+
+teikna byssur laser
+
+teikna kassa fyrir main
+
+prenta byssu og kassa
+
+samettning byssu
+
+samsettning main
+
