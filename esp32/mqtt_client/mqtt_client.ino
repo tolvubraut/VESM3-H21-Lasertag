@@ -58,8 +58,8 @@ void display_render(void) {
 }
 
 EspMQTTClient client(
-  "SiminnE87DE1",
-  "SV4PAYDUMX",
+  "Taekniskolinn",
+  "",
   "test.mosquitto.org",  // MQTT Broker server ip
   "",   // Can be omitted if not needed
   "",   // Can be omitted if not needed
@@ -108,6 +108,11 @@ void loop()
   client.loop();
   delay(33);
   // Replace delay with a set of millis() to avoid missed inputs
+
+  /*if () {
+    
+  };*/
+
   
   // Refresh screen when user fires the laser or looses health
   if (previous_bullets != bullets or previous_health != health){
@@ -133,9 +138,8 @@ void loop()
     }
   }
   // Laser receiving large amount of light
-  // Use median to calculate avg light to get more precise results
-  //Serial.println(lightLevel);
-  if (lightLevel > 3000) {
+  Serial.println(lightLevel);
+  if (lightLevel > 3500) {
     Serial.println("Got hit");
     health = health-10;  
 
