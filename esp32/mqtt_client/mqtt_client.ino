@@ -4,6 +4,13 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
+//MQTT Variables
+String DEVICE_ID = "2";
+String device_topic = "dabdabdab6969/device/"+DEVICE_ID;
+#define telemetry_topic "dabdabdab6969/telemetry"
+#define reload_topic "dabdabdab6969/reload"
+
+
 // OLED
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 32 // OLED display height, in pixels
@@ -14,12 +21,24 @@ int previous_health;
 
 // Laser
 #define LASER_TRIGGER 18
-#define LASER_DELAY 50 // Delay between each shot in MS
-unsigned long laser_time;
+#define LASER_DELAY 500 // Delay between each shot in MS
+#define LASER_SHOOT_DURATION 400 // How long the laser will be shooting for 
+#define LASER_PIN 16
+unsigned long laser_lastchange;
 
 
 // LDR
 #define LDR_PIN 33
+#define LDR_DELAY 500
+unsigned long LDR_lastchange;
+
+
+// Readrate for sensors
+#define SENSOR_readrate 33
+unsigned long SENSOR_lastread = 0;
+int lightLevel;
+int laserTrigger;
+ 
 
 // Gamestats
 #define ID 0;
@@ -32,6 +51,7 @@ char screen_buffer_ln3[30];
 void pin_setup(void) {
   pinMode(LASER_TRIGGER, INPUT_PULLUP);
   pinMode(LDR_PIN, INPUT);
+  pinMode(LASER_PIN, OUTPUT);
 }
 
 void display_setup(void) {
@@ -58,8 +78,8 @@ void display_render(void) {
 }
 
 EspMQTTClient client(
-  "SiminnE87DE1",
-  "SV4PAYDUMX",
+  "Taekniskolinn",
+  "",
   "test.mosquitto.org",  // MQTT Broker server ip
   "",   // Can be omitted if not needed
   "",   // Can be omitted if not needed
@@ -81,33 +101,55 @@ void setup()
 void onConnectionEstablished()
 {
   // Subscribe to "mytopic/test" and display received message to Serial
-  client.subscribe("dabdabdab6969/telemetry", [](const String & payload) {
+  client.subscribe(telemetry_topic, [](const String & payload) {
     Serial.println(payload);
   });
 
   // Subscribe to "mytopic/wildcardtest/#" and display received message to Serial
-  client.subscribe("dabdabdab6969/reload", [](const String & topic, const String & payload) {
+  client.subscribe(reload_topic, [](const String & topic, const String & payload) {
     Serial.println(payload);
-    if (payload == "0") {
+    if (payload == DEVICE_ID) {
       bullets = 30;
       memset(screen_buffer_ln3, 0, 30);
     };
   });
 
   // Publish a message to "mytopic/test"
-  client.publish("dabdabdab6969/telemetry", "This is a message"); // You can activate the retain flag by setting the third parameter to true
+  client.publish(telemetry_topic, "This is a message"); // You can activate the retain flag by setting the third parameter to true
 
-  // Execute delayed instructions
-  client.executeDelayed(5 * 1000, []() {
-    client.publish("dabdabdab6969/telemetry", "This is a message sent 5 seconds later");
-  });
 }
 
 void loop()
 {
   client.loop();
-  delay(33);
-  // Replace delay with a set of millis() to avoid missed inputs
+   // LDR og Laser
+  if (millis() > SENSOR_lastread + SENSOR_readrate) {
+    lightLevel = analogRead(LDR_PIN);
+    laserTrigger = digitalRead(LASER_TRIGGER);
+    SENSOR_lastread = millis();
+  };
+
+  
+  if (millis() < laser_lastchange + LASER_SHOOT_DURATION and bullets != 0) {
+    Serial.println("Shooting");  
+    // Put laser to high here
+    
+  };
+  
+  if (laserTrigger == 0) {
+    if (millis() < laser_lastchange + LASER_DELAY) {
+      // 
+      if (bullets == 0) {
+        sprintf(screen_buffer_ln3, "Reload");
+        display_renderText(screen_buffer_ln3, 0, 20);
+      } 
+    } else if (millis() > laser_lastchange + LASER_DELAY){
+      //Shoot
+      laser_lastchange = millis();
+      bullets = bullets -1;
+    }
+  };
+
   
   // Refresh screen when user fires the laser or looses health
   if (previous_bullets != bullets or previous_health != health){
@@ -116,31 +158,22 @@ void loop()
     previous_health = health;
   }
 
-  // LDR
-  int lightLevel = analogRead(LDR_PIN);
-  int laserTrigger = digitalRead(LASER_TRIGGER);
-
-  // Trigger is being pressed
-  if (laserTrigger == 0) {
-    Serial.println("Trigger pressed");
-    bullets = bullets -1;
-    // Tell user to reload
-    if (bullets <= 0) {
-      sprintf(screen_buffer_ln3, "Reload");
-      display_renderText(screen_buffer_ln3, 0, 20);
-    }  else {
-      
-    }
-  }
   // Laser receiving large amount of light
-  // Use median to calculate avg light to get more precise results
-  //Serial.println(lightLevel);
-  if (lightLevel > 3000) {
-    Serial.println("Got hit");
-    health = health-10;  
-
-    if (health <= 0) {
-      //Player died  
-    }
+  if (lightLevel > 4000) {
+    if (millis() > LDR_lastchange + LDR_DELAY) {
+      Serial.println("Got hit");
+      if (health == 0) {
+        //Player died 
+          sprintf(screen_buffer_ln3, "U dEd");
+          display_renderText(screen_buffer_ln3, 0, 20);
+        //Send with MQTT and inform other player that this player has died.
+        //Also restart the game and reset all game variables after x time
+      } else if (!millis() <= LDR_lastchange + LDR_DELAY) {
+        // Received a shot too recently
+        health = health-10; 
+        LDR_lastchange = millis();
+        client.publish(device_topic, "I took damage");
+      } 
+    } 
   }
 }
