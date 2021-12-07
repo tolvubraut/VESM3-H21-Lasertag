@@ -11,7 +11,7 @@ device_ids = ["1", "2"]
 
 client_telemetry_topic = id + '/telemetry'
 client_reload_topic = id + '/reload'
-client_device_topic = id + '/device'
+client_device_topic = id + '/device/'
 client_name = id
 
 mqtt_client = mqtt.Client(client_name)
@@ -47,4 +47,5 @@ while True:
     except Exception:
         GPIO.cleanup()
         raise
+
 
