@@ -11,6 +11,9 @@ String device_topic = "dabdabdab6969/device/"+DEVICE_ID;
 #define telemetry_topic "dabdabdab6969/telemetry"
 #define reload_topic "dabdabdab6969/reload"
 
+//Json
+DynamicJsonDocument gameData(512);
+char json_buffer[512];
 
 // OLED
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
@@ -35,7 +38,7 @@ unsigned long LDR_lastchange;
 
 
 // Readrate for sensors
-#define SENSOR_readrate 33
+#define SENSOR_readrate 10
 unsigned long SENSOR_lastread = 0;
 int lightLevel;
 int laserTrigger;
@@ -48,6 +51,16 @@ int health = 100; // Initial amount of health
 char screen_buffer_ln1[30];
 char screen_buffer_ln2[30];
 char screen_buffer_ln3[30];
+
+EspMQTTClient client(
+  "Taekniskolinn",
+  "",
+  "test.mosquitto.org",  // MQTT Broker server ip
+  "",   // Can be omitted if not needed
+  "",   // Can be omitted if not needed
+  "TestClientv32",     // Client name that uniquely identify your device
+  1883              // The MQTT port, default to 1883. this line can be omitted
+);
 
 void pin_setup(void) {
   pinMode(LASER_TRIGGER, INPUT_PULLUP);
@@ -68,6 +81,14 @@ void display_renderText(char *text, uint8_t x, uint8_t y) {
   display.println(text);
 }
 
+void send_json() {
+    gameData["health"] = health; 
+    gameData["ammo"] = bullets;
+    serializeJson(gameData, json_buffer);
+    client.publish(device_topic, json_buffer);
+    memset(json_buffer, 0, sizeof(json_buffer));
+};
+
 void display_render(void) {
   //Updates Screen
   sprintf(screen_buffer_ln1, "Bullets: [%d]", bullets);
@@ -77,16 +98,6 @@ void display_render(void) {
   display.display();
   display.clearDisplay();
 }
-
-EspMQTTClient client(
-  "Taekniskolinn",
-  "",
-  "test.mosquitto.org",  // MQTT Broker server ip
-  "",   // Can be omitted if not needed
-  "",   // Can be omitted if not needed
-  "TestClientv32",     // Client name that uniquely identify your device
-  1883              // The MQTT port, default to 1883. this line can be omitted
-);
 
 void setup()
 {
@@ -130,13 +141,16 @@ void loop()
     SENSOR_lastread = millis();
   };
 
-  
+  //Power to the laser
   if (millis() < laser_lastchange + LASER_SHOOT_DURATION and bullets != 0) {
     Serial.println("Shooting");  
-    // Put laser to high here
+    digitalWrite(LASER_PIN, HIGH);
     
+  } else {
+    digitalWrite(LASER_PIN, LOW);  
   };
   
+  // If user shoots
   if (laserTrigger == 0) {
     if (millis() < laser_lastchange + LASER_DELAY) {
       // 
@@ -173,7 +187,10 @@ void loop()
         // Received a shot too recently
         health = health-10; 
         LDR_lastchange = millis();
-        client.publish(device_topic, "I took damage");
+        gameData["health"] = health; 
+        gameData["ammo"] = bullets;
+        serializeJson(gameData, json_buffer);
+        client.publish(device_topic, json_buffer);
       } 
     } 
   }
