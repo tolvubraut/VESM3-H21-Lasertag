@@ -6,7 +6,7 @@
 #include <ArduinoJson.h>
 
 //MQTT Variables
-String DEVICE_ID = "2";
+String DEVICE_ID = "1";
 #define telemetry_topic "dabdabdab6969/telemetry"
 #define reload_topic "dabdabdab6969/reload"
 #define reset_topic "dabdabdab6969/reset"
@@ -92,6 +92,26 @@ void resets(void) {
   health = 100;  
 };
 
+// Mean light
+int normrn = 2000;
+int spiketresh = 200;
+const int DistTestAvarageCount = 100;
+float dists[DistTestAvarageCount] = {};
+int nextWrite = 0;
+int readLight(int light){  
+
+  dists[nextWrite] = light;
+  nextWrite = (nextWrite + 1) % DistTestAvarageCount;
+
+  int sum = 0;
+  for(int i=0;i<DistTestAvarageCount;i++){
+    sum += dists[i];
+  }
+
+  normrn =  sum / DistTestAvarageCount;
+  return normrn;
+}
+
 void display_renderText(char *text, uint8_t x, uint8_t y) {
   display.setCursor(x, y);
   display.println(text);
@@ -104,6 +124,7 @@ void display_render(void) {
   sprintf(screen_buffer_ln2, "%Health: [%d]", health);
   display_renderText(screen_buffer_ln2, 0, 10);
   if (bullets == 0) {
+    sprintf(screen_buffer_ln3, "Reload");
     display_renderText(screen_buffer_ln3, 0, 20);
     
   } else {
@@ -157,93 +178,93 @@ void onConnectionEstablished()
 void loop()
 {
   client.loop();
-  if(!game_id[0] == '\0') {
-    if (millis() > reset_timer and reset == 0) {
-       // LDR og Laser
-      if (millis() > SENSOR_lastread + SENSOR_readrate) {
-        lightLevel = analogRead(LDR_PIN);
-        laserTrigger = digitalRead(LASER_TRIGGER);
-        SENSOR_lastread = millis();
-      };
+  if (millis() > reset_timer and reset == 0) {
+     // LDR og Laser
+    if (millis() > SENSOR_lastread + SENSOR_readrate) {
+      lightLevel = analogRead(LDR_PIN);
+      laserTrigger = digitalRead(LASER_TRIGGER);
+      SENSOR_lastread = millis();
+      Serial.println(lightLevel);
+    };
     
-      //Power to the laser
-      if (millis() < laser_lastchange + LASER_SHOOT_DURATION and bullets != 0) {
-        Serial.println("Shooting");  
-        digitalWrite(LASER_PIN, HIGH);
-        
-      } else {
-        digitalWrite(LASER_PIN, LOW);  
-      };
-      
-      // If user shoots
-      if (laserTrigger == 0) {
-        if (millis() < laser_lastchange + LASER_DELAY) {
-          // 
-        } else if (millis() > laser_lastchange + LASER_DELAY and bullets > 0){
-          //Shoot
-          laser_lastchange = millis();
-          bullets = bullets -1;
-        }
-      };
-    
-      
-      // Refresh screen when user fires the laser or looses health
-      if (previous_bullets != bullets or previous_health != health){
-        display_render();
-        previous_bullets = bullets;
-        previous_health = health;
-        if (millis() > last_data_send+data_rate){
-          gameData["command"] = "info";
-          gameData["health"] = health; 
-          gameData["ammo"] = bullets;
-          gameData["device"] = DEVICE_ID;
-          serializeJson(gameData, json_buffer);
-          client.publish(telemetry_topic, json_buffer);
-          memset(json_buffer, 0, sizeof(json_buffer));
-          last_data_send = millis();
-        }
-      }
-    
-      // Laser receiving large amount of light
-      if (lightLevel > 4000) {
-        if (millis() > LDR_lastchange + LDR_DELAY) {
   
-          if (health > 0) {
-            Serial.println("Got hit");
-            health = health-10; 
-            LDR_lastchange = millis();
-          }
-          if (health <= 0 or health == 0) {
-            //Player died 
-            if (millis() > mqtt_failsafe_timer){
-              mqtt_failsafe_timer = millis()+5000;
-              gameData["command"] = "reset";
-              serializeJson(gameData, json_buffer);
-              client.publish(telemetry_topic, json_buffer);
-              memset(json_buffer, 0, sizeof(json_buffer));
-            } 
-          } 
-          } else if (!millis() <= LDR_lastchange + LDR_DELAY) {
-            // Received a shot too recently
-            //grace period
-        } 
+    //Power to the laser
+    if (millis() < laser_lastchange + LASER_SHOOT_DURATION and bullets != 0) {
+      Serial.println("Shooting");  
+      digitalWrite(LASER_PIN, HIGH);
+      
+    } else {
+      digitalWrite(LASER_PIN, LOW);  
+    };
+    
+    // If user shoots
+    if (laserTrigger == 0) {
+      if (millis() < laser_lastchange + LASER_DELAY) {
+        // 
+      } else if (millis() > laser_lastchange + LASER_DELAY and bullets > 0){
+        //Shoot
+        laser_lastchange = millis();
+        bullets = bullets -1;
       }
-    } else if (reset == 1) {
-      reset = 0;
-      reset_timer = millis()+5000;
-      screen_reset();
-      if (health <= 0) {
-        sprintf(screen_buffer_ln1, "You lost!");
-        display_renderText(screen_buffer_ln1, 0, 0);  
-      } else {
-        sprintf(screen_buffer_ln1, "You won!");
-        display_renderText(screen_buffer_ln1, 0, 0);  
+    };
+  
+    
+    // Refresh screen when user fires the laser or looses health
+    if (previous_bullets != bullets or previous_health != health){
+      display_render();
+      previous_bullets = bullets;
+      previous_health = health;
+      if (millis() > last_data_send+data_rate){
+        gameData["command"] = "info";
+        gameData["health"] = health; 
+        gameData["ammo"] = bullets;
+        gameData["device"] = DEVICE_ID;
+        serializeJson(gameData, json_buffer);
+        client.publish(telemetry_topic, json_buffer);
+        memset(json_buffer, 0, sizeof(json_buffer));
+        last_data_send = millis();
       }
-      sprintf(screen_buffer_ln2, "Resetting...");
-      display_renderText(screen_buffer_ln2, 0, 10);
-      display.display();
-      display.clearDisplay();
-      resets();
     }
+  
+    // Laser receiving large amount of light
+    if (lightLevel > 4000) {
+      if (millis() > LDR_lastchange + LDR_DELAY) {
+
+        if (health > 0) {
+          Serial.println("Got hit");
+          health = health-25; 
+          LDR_lastchange = millis();
+        }
+        if (health <= 0 or health == 0) {
+          //Player died 
+          if (millis() > mqtt_failsafe_timer){
+            mqtt_failsafe_timer = millis()+5000;
+            gameData["command"] = "reset";
+            serializeJson(gameData, json_buffer);
+            client.publish(telemetry_topic, json_buffer);
+            memset(json_buffer, 0, sizeof(json_buffer));
+          } 
+        } 
+        } else if (!millis() <= LDR_lastchange + LDR_DELAY) {
+          // Received a shot too recently
+          //grace period
+      } 
+    }
+  } else if (reset == 1) {
+    reset = 0;
+    reset_timer = millis()+5000;
+    screen_reset();
+    if (health <= 0) {
+      sprintf(screen_buffer_ln1, "You lost!");
+      display_renderText(screen_buffer_ln1, 0, 0);  
+    } else {
+      sprintf(screen_buffer_ln1, "You won!");
+      display_renderText(screen_buffer_ln1, 0, 0);  
+    }
+    sprintf(screen_buffer_ln2, "Resetting...");
+    display_renderText(screen_buffer_ln2, 0, 10);
+    display.display();
+    display.clearDisplay();
+    resets();
   }
 }

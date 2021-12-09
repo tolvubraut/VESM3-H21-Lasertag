@@ -16,3 +16,6 @@ Nota pina nr 33 fyrir LDR
 Laser - 16 
 LaserTrigger - 18
 LDR - 33
+
+# TODO
+Add unique id to each lasertag game to be able to identify data for website
