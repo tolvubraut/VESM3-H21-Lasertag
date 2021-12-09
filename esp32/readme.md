@@ -10,3 +10,9 @@
 ## Varðandi ESP32 og LDR
 Það er galli með summa pinna þegar er notað EspMQTTClient safnið
 Nota pina nr 33 fyrir LDR
+
+
+## Esp pinnar
+Laser - 16 
+LaserTrigger - 18
+LDR - 33
