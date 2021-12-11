@@ -1,5 +1,13 @@
 # vesm3_lokaverkefni
 
+## Efnislisti
+- ESP32D
+- LDR sensor
+- OLED SSD1306
+- Raspberry pi 
+- RC522 RFID
+- Laser
+
 ## Kóði
 [Laser byssa kóði](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/esp32/mqtt_client/mqtt_client.ino)
 
