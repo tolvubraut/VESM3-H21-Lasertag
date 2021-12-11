@@ -1,5 +1,4 @@
 # vesm3_lokaverkefni
-dab
 
 ## Kóði
 [Laser byssa kóði](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/esp32/mqtt_client/mqtt_client.ino)
