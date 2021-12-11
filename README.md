@@ -14,7 +14,10 @@
 
 
 ## Síða
-[Síða notuð til að sýna gögn](https://flask-scoreboard.herokuapp.com/)
+[Síða notuð til að sýna gögn](https://flask-scoreboard.herokuapp.com/)+
+
+## Ljósmynd af upsetningu á brauðbretti.
+![Brauðbretti](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/myndir_mynbond/grunuppsetning.jpg)
 
 
 # Skýrsla TODO
