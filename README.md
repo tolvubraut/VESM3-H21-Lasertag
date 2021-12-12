@@ -52,8 +52,8 @@ Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikm
 - En meiri tími í að laga galla i kóða og mjög mikill tími fór í samsettningu og þá sérstaklega lóðun. 
 
 ## Vandamál með verkefnið og Hönnunarákvarðanir.
-- Aðal vandamál var að finna út hvernig við mundum ná laserinum til að virka og finna batterí sem gat knúið esp'inn í byssunum.  
-- Kóðinn var smá vesen þar sem við þurftum að nota marga staðla til að þetta mundi allt virka. Json í esp, MQTT til að stjórna leikinum, POST til að senda upplýsingarnar í síðuna og ágætlega mikinn tími lagðir í að setja upp millis fyrir ESP þannig að esp32d mundi ekki missa út af einhverju skilaboðum t.d. Reset skipunum eða Reload skipunum.
+- stærstu vandamálin sem við lenntum í voru að fá laser og hakka hann í laser byssu og hvernig við gætum skinjað laser hit. 
+- Kóðinn var mikið vesen þar sem við þurftum að nota marga staðla til að þetta mundi allt virka. Json í esp, MQTT til að stjórna leikinum, POST til að senda upplýsingarnar í síðuna og mikill tími var lagður í að setja upp millis fyrir ESP þannig að hann myndi ekki missa af einhverju skilaboðum t.d. Reset skipunum eða Reload skipunum.
 - Upprunalega var planað að búa til 3d prenntaða byssu en vegna tímatakmarkana áháðum við að nota frekar laserskera sem er bæði fljótlegri hönnun og enn frekar fljótari prenntun. 
 
 
