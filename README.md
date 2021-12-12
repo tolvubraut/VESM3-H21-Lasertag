@@ -63,10 +63,10 @@ Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikm
 
 
 ### Aðal söfn
-[Json safn](https://arduinojson.org/)
-[ESP MQTT](https://www.arduino.cc/reference/en/libraries/espmqttclient/)
-[PAHO MQTT](https://pypi.org/project/paho-mqtt/)
-[Adafruit SSD1306](https://github.com/adafruit/Adafruit_SSD1306)
+- [Json safn](https://arduinojson.org/)
+- [ESP MQTT](https://www.arduino.cc/reference/en/libraries/espmqttclient/)
+- [PAHO MQTT](https://pypi.org/project/paho-mqtt/)
+- [Adafruit SSD1306](https://github.com/adafruit/Adafruit_SSD1306)
 
 
 
