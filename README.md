@@ -50,7 +50,7 @@ Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikm
 - Við byrjuðum að kóða fyrir laserbyssuna(esp32d) og ammo kassan(raspberry pi) og náðum einföldu virkni. Bjuggum líka til einfalda síðu til að sýna gögnin
 - Bjartur fór og fekk laser og tók hann í sundur til að sjá hvernig hann virkar og hvernig við mundum tengja hann við esp32d.
 ### Tími 3
-- áhersla í þessum tíma var lögð í að ná almennilegri virkni með esp32d og laga alla galla sem komu fram. 
+- áhersla í þessum tíma var lögð í að ná almennilegri virkni með esp32d og laga alla galla sem komu fram. Bjartur teiknaði byssuna og ammo station fyrir laser skorun.
 ### Tími 4
 - En meiri tími í að laga galla og lóða allt saman.
 
