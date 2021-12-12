@@ -62,21 +62,10 @@ char game_id[11]; // Used to differentiate different laser tag games
 // Reset mechanic
 int reset = 0;
 unsigned long reset_timer;
-/*
+
 EspMQTTClient client(
   "Taekniskolinn",
   "",
-  "test.mosquitto.org",  // MQTT Broker server ip
-  "",   // Can be omitted if not needed
-  "",   // Can be omitted if not needed
-  "TestClientv32",     // Client name that uniquely identify your device
-  1883              // The MQTT port, default to 1883. this line can be omitted
-);
-*/
-
-EspMQTTClient client(
-  "sast",
-  "sast6sas",
   "test.mosquitto.org",  // MQTT Broker server ip
   "",   // Can be omitted if not needed
   "",   // Can be omitted if not needed
@@ -195,7 +184,7 @@ void loop()
       lightLevel = analogRead(LDR_PIN);
       laserTrigger = digitalRead(LASER_TRIGGER);
       SENSOR_lastread = millis();
-      Serial.println(lightLevel);
+      //Serial.println(lightLevel);
     };
     
   
