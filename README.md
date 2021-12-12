@@ -1,11 +1,13 @@
 # Vesm3 lokaverkefni - Sveinn og Bjartur
 
 ## Verkefnalýsing
-Við bjuggum til Laser byssu sem er tengd við ESP32D og notar LDR ljósnæmi til að skynja hvenær laser er að beina á það.
 
-Grunnvirkni leiksins er að hver er með skot og líf, þegar einhver tapar líf eða skot er það upplýsingar send yfir í Raspberry pi með MQTT.
+Við bjuggum til prototípu af lasertag leik þar sem spilarar hafa byssu með takmörkunum skotum og ákveði mörg skot sem þeir geta tekið áður en þeir tapa leiknum.
 
-Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikmaður deyr eða er ekki með skot er hann látinn vita gegnum skjáinn hvort hann tapaði/vann eða þarf að reloada. Til að reloada þarf leikmaður að fara að ammo station(raspberry pi) til að geta reloadað með RFID. Hver byssa er með sitt eigin unqiue rfid ID sem greinir hver var að biðja um skot. 
+Grunnvirknin leiksins er sú að þegar byssa annað hvort skýtur eða er skotinn sendir hún uppfærðar upplýsingar um stöðu sína, i gegnum MQTT, á raspberry sem sér svo um að segja byssunum þegar leiknum er lokið og hvor vann eða tapaði. Raspberry'inn er líka skota pickup; ef maður notar öll skotinn sín þarf maður að fara að ná í fleiri skot. Það er gert með því að skanna byssuna með rfid'i sem er innbyggt í henni og þá sendir raspberryinn skilaboð til viðeigandi byssu um að endurstilla skotafjöldann. 
+
+Skotinn og lífið leikmanna er sýnt á SSD1306 OLED skjá og þegar leikmaður deyr eða er ekki með skot er hann látinn vita gegnum skjáinn, hvort hann tapaði/vann eða þarf að reloada.
+
 
 ## Efnislisti
 - ESP32D
