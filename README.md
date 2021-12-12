@@ -38,7 +38,9 @@ Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikm
 ### Ljósmynd af upsetningu á brauðbretti.
 ![Brauðbretti](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/myndir_mynbond/grunuppsetning.jpg)
 
-![Rafrásteikning](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/ByssuTenging.svg)
+![Rafrásteikning-byssa](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/ByssuTenging.svg)
+![Rafrásteikning-hub](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/amopickupTengingar.svg)
+
 
 [Myndband af virkni]()
 
