@@ -43,7 +43,7 @@ Skotinn og lífið leikmanna er sýnt á SSD1306 OLED skjá og þegar leikmaður
 ![Rafrásteikning-hub](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/amopickupTengingar.svg)
 
 
-[Myndband af virkni](https://youtu.be/NeMznGbVOKM)
+###[Myndband af virkni](https://youtu.be/NeMznGbVOKM)
 
 
 ## Dagbók
