@@ -7,6 +7,8 @@
 - Raspberry pi 
 - RC522 RFID
 - Laser
+- 10k viðnám
+- bc547 transistor
 
 ## Kóði
 [Laser byssa kóði](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/esp32/mqtt_client/mqtt_client.ino)
