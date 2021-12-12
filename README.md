@@ -1,4 +1,4 @@
-# vesm3_lokaverkefni
+# Vesm3 lokaverkefni - Sveinn og Bjartur
 
 ## Verkefnalýsing
 Við bjuggum til Laser byssu sem er tengd við ESP32D og notar LDR ljósnæmi til að skynja hvenær laser er að beina á það.
