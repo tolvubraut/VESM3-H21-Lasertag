@@ -5,8 +5,6 @@ Við bjuggum til Laser byssu sem er tengd við ESP32D og notar LDR ljósnæmi ti
 
 Grunnvirkni leiksins er að hver er með skot og líf, þegar einhver tapar líf eða skot er það upplýsingar send yfir í Raspberry pi með MQTT.
 
-Raspberry pi mundi svo senda POST request yfir í síðunna sem mun svo geyma það upplýsingar. Vegna of litlum tíma náðist það ekki að útfærast.
-
 Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikmaður deyr eða er ekki með skot er hann látinn vita gegnum skjáinn hvort hann tapaði/vann eða þarf að reloada. Til að reloada þarf leikmaður að fara að ammo station(raspberry pi) til að geta reloadað með RFID. Hver byssa er með sitt eigin unqiue rfid ID sem greinir hver var að byðja um skot. 
 
 ## Efnislisti
@@ -32,9 +30,6 @@ Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikm
 
 [Kassi utan um ammo station - SVG](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/amohub.svg)
 
-### Síða
-[Síða notuð til að sýna gögn](https://flask-scoreboard.herokuapp.com/)
-
 ### Ljósmynd af upsetningu á brauðbretti.
 ![Brauðbretti](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/myndir_mynbond/grunuppsetning.jpg)
 
@@ -42,7 +37,7 @@ Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikm
 ![Rafrásteikning-hub](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/amopickupTengingar.svg)
 
 
-[Myndband af virkni]()
+[Myndband af virkni](https://youtu.be/NeMznGbVOKM)
 
 
 ## Dagbók
@@ -52,12 +47,14 @@ Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikm
 - Við byrjuðum að kóða fyrir laserbyssuna(esp32d) og ammo kassan(raspberry pi) og náðum einföldu virkni. Bjuggum líka til einfalda síðu til að sýna gögnin
 - Bjartur fór og fekk laser og tók hann í sundur til að sjá hvernig hann virkar og hvernig við mundum tengja hann við esp32d.
 ### Tími 3
-- áhersla í þessum tíma var lögð í að ná almennilegri virkni með esp32d og laga alla galla sem komu fram. Bjartur teiknaði byssuna og ammo station fyrir laser skorun.
+- áÁhersla í þessum tíma var lögð í að ná almennilegri virkni með esp32d og laga alla galla sem komu fram. Bjartur teiknaði byssuna og ammo station fyrir laser skera.
 ### Tími 4
-- En meiri tími í að laga galla og lóða allt saman.
+- En meiri tími í að laga galla i kóða og mjög mikill tími fór í samsettningu og þá sérstaklega lóðun. 
 
 ## Vandamál með verkefnið og Hönnunarákvarðanir.
-- Aðal vandamál var að finna út hvernig við mundum ná laserinum til að virka og með hvaða batterí við mundum þurfa til að þetta mundi virka, Kóðinn var líka smá vesenn þar sem við þurftum að nota marga staðla til að þetta mundi allt virka. Json í esp, MQTT til að stjórna leikinum, POST til að senda upplýsingarnar í síðuna og ágætlega mikinn tími lagðir í að setja upp millis fyrir ESP þannig að esp32d mundi ekki missa út af einhverju skilaboðum t.d. Reset skipunum eða Reload skipunum.
+- stærstu vandamálin sem við lenntum í voru að fá laser og hakka hann í laser byssu og hvernig við gætum skinjað laser hit. 
+- Kóðinn var mikið vesen þar sem við þurftum að nota marga staðla til að þetta mundi allt virka. Json í esp, MQTT til að stjórna leikinum, POST til að senda upplýsingarnar í síðuna og mikill tími var lagður í að setja upp millis fyrir ESP þannig að hann myndi ekki missa af einhverju skilaboðum t.d. Reset skipunum eða Reload skipunum.
+- Upprunalega var planað að búa til 3d prenntaða byssu en vegna tímatakmarkana áháðum við að nota frekar laserskera sem er bæði fljótlegri hönnun og enn frekar fljótari prenntun. 
 
 
 ## Heimildir
@@ -71,13 +68,12 @@ Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikm
 - [Adafruit SSD1306](https://github.com/adafruit/Adafruit_SSD1306)
 
 
-
 # Skýrsla TODO
 - Allur kóði, skrár og gögn. - Búið
 - verkefnalýsing ásamt skýringarmyndum og efnislista. - Búið
-- rafrásarteikning t.d með [Circuit Diagram](https://www.circuit-diagram.org/). - Vantar
+- rafrásarteikning t.d með [Circuit Diagram](https://www.circuit-diagram.org/). - Búið
 - hönnunarteikningar (til prentunar) 2d og eða 3d teikningar og model (.stl skráin), ef það á við. - Búið
-- tengil á myndband (youtube) af notkun og virkni frumgerðar. - Vantar
+- tengil á myndband (youtube) af notkun og virkni frumgerðar. - Búið
 - tengla á kóðaskrár. - Búið
 - ljósmyndir af samsettningu á IoT búnað og tilraunum. - Semi búið hægt að bæta fleirum myndum af tilraunum.
-- helstu hönnunarákvarðanir, hvað var gert og heimildir. - Vantar
+- helstu hönnunarákvarðanir, hvað var gert og heimildir. - allavega einhvað
