@@ -1,7 +1,13 @@
 # vesm3_lokaverkefni
 
 ## Verkefnalýsing
-Vantar
+Við bjuggum til Laser byssu sem er tengd við ESP32D og notar LDR ljósnæmi til að skynja hvenær laser er að beina á það.
+
+Grunnvirkni leiksins er að hver er með skot og líf, þegar einhver tapar líf eða skot er það upplýsingar send yfir í Raspberry pi með MQTT.
+
+Raspberry pi mundi svo senda POST request yfir í síðunna sem mun svo geyma það upplýsingar. Vegna of litlum tíma náðist það ekki að útfærast.
+
+Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikmaður deyr eða er ekki með skot er hann látinn vita gegnum skjáinn hvort hann tapaði/vann eða þarf að reloada. Til að reloada þarf leikmaður að fara að ammo station(raspberry pi) til að geta reloadað með RFID. Hver byssa er með sitt eigin unqiue rfid ID sem greinir hver var að byðja um skot. 
 
 ## Efnislisti
 - ESP32D
@@ -20,9 +26,9 @@ Vantar
 
 ## Hönnunarteikningar, Rafrásateikningar og tenglar
 ### Hönnunarteikningar
-[Byssa](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/gun.svg)
+[Byssa - SVG](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/gun.svg)
 
-[Kassi utan um ammo station](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/amohub.svg)
+[Kassi utan um ammo station - SVG](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/amohub.svg)
 
 ### Síða
 [Síða notuð til að sýna gögn](https://flask-scoreboard.herokuapp.com/)
@@ -30,11 +36,9 @@ Vantar
 ### Ljósmynd af upsetningu á brauðbretti.
 ![Brauðbretti](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/myndir_mynbond/grunuppsetning.jpg)
 
-### Rafrásteikning
-[Teikning]()
+[Rafrásteikning]()
 
 ## Dagbók
-
 ### Tími 1
 - Við byrjuðum að safna saman efnislista og hugsa hvað við þurftum að nota til fyrir verkefnið.
 ### Tími 2
