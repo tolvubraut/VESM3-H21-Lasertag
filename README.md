@@ -5,7 +5,7 @@ Við bjuggum til Laser byssu sem er tengd við ESP32D og notar LDR ljósnæmi ti
 
 Grunnvirkni leiksins er að hver er með skot og líf, þegar einhver tapar líf eða skot er það upplýsingar send yfir í Raspberry pi með MQTT.
 
-Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikmaður deyr eða er ekki með skot er hann látinn vita gegnum skjáinn hvort hann tapaði/vann eða þarf að reloada. Til að reloada þarf leikmaður að fara að ammo station(raspberry pi) til að geta reloadað með RFID. Hver byssa er með sitt eigin unqiue rfid ID sem greinir hver var að byðja um skot. 
+Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikmaður deyr eða er ekki með skot er hann látinn vita gegnum skjáinn hvort hann tapaði/vann eða þarf að reloada. Til að reloada þarf leikmaður að fara að ammo station(raspberry pi) til að geta reloadað með RFID. Hver byssa er með sitt eigin unqiue rfid ID sem greinir hver var að biðja um skot. 
 
 ## Efnislisti
 - ESP32D
@@ -33,9 +33,10 @@ Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikm
 ### upsetningu á brauðbretti.
 ![Brauðbretti](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/myndir_mynbond/grunuppsetning.jpg)
 
-### Loka uppsettning byssu
+### Loka uppsetning byssu
 ![byssa](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/byssa-uppsettnitg.jpg)
 
+### Rafrásar teikningar
 ![Rafrásteikning-byssa](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/ByssuTenging.svg)
 ![Rafrásteikning-hub](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/amopickupTengingar.svg)
 
@@ -48,20 +49,20 @@ Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikm
 - Við byrjuðum að safna saman efnislista og hugsa hvað við þurftum að nota til fyrir verkefnið.
 ### Tími 2
 - Við byrjuðum að kóða fyrir laserbyssuna(esp32d) og ammo kassan(raspberry pi) og náðum einföldu virkni. Bjuggum líka til einfalda síðu til að sýna gögnin
-- Bjartur fór og fekk laser og tók hann í sundur til að sjá hvernig hann virkar og hvernig við mundum tengja hann við esp32d.
+- Bjartur fór og fékk laser og tók hann í sundur til að sjá hvernig hann virkar og hvernig við mundum tengja hann við esp32d.
 ### Tími 3
-- áÁhersla í þessum tíma var lögð í að ná almennilegri virkni með esp32d og laga alla galla sem komu fram. Bjartur teiknaði byssuna og ammo station fyrir laser skera.
+- Áhersla í þessum tíma var lögð í að ná almennilegri virkni með esp32d og laga alla galla sem komu fram. Bjartur teiknaði byssuna og ammo station fyrir laser skera.
 ### Tími 4
-- En meiri tími í að laga galla i kóða og mjög mikill tími fór í samsettningu og þá sérstaklega lóðun. 
+- En meiri tími í að laga galla i kóða og mjög mikill tími fór í samsetningu og þá sérstaklega lóðun. 
 
 ## Vandamál með verkefnið og Hönnunarákvarðanir.
-- stærstu vandamálin sem við lenntum í voru að fá laser og hakka hann í laser byssu og hvernig við gætum skinjað laser hit. 
-- Kóðinn var mikið vesen þar sem við þurftum að nota marga staðla til að þetta mundi allt virka. Json í esp, MQTT til að stjórna leikinum, POST til að senda upplýsingarnar í síðuna og mikill tími var lagður í að setja upp millis fyrir ESP þannig að hann myndi ekki missa af einhverju skilaboðum t.d. Reset skipunum eða Reload skipunum.
-- Upprunalega var planað að búa til 3d prenntaða byssu en vegna tímatakmarkana áháðum við að nota frekar laserskera sem er bæði fljótlegri hönnun og enn frekar fljótari prenntun. 
+- stærstu vandamálin sem við lentum í voru að fá laser og hakka hann í laser byssu og hvernig við gætum skynjað laser hit. 
+- Kóðinn var mikið vesen þar sem við þurftum að nota marga staðla til að þetta mundi allt virka. Json í esp, MQTT til að stjórna leiknum, POST til að senda upplýsingarnar í síðuna og mikill tími var lagður í að setja upp millis fyrir ESP þannig að hann myndi ekki missa af einhverju skilaboðum t.d. Reset skipunum eða Reload skipunum.
+- Upprunalega var planað að búa til 3d prentaða byssu en vegna tímatakmarkanna áháðum við að nota frekar laserskera sem er bæði fljótlegri hönnun og enn frekar fljótari prentun. 
 
 
 ## Heimildir
-Þegar það kemar að kóða var aðeins boilerplate notað hjá ESP MQTT safninu og allt annað var gert með notkun af docs hjá viðeigandi söfnunum.
+Þegar það kemur að kóða var aðeins boilerplate notað hjá ESP MQTT safninu og allt annað var gert með notkun af docs hjá viðeigandi söfnunum.
 
 
 ### Aðal söfn
