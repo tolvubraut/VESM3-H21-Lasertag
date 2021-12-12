@@ -37,7 +37,7 @@ Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikm
 ![Rafrásteikning-hub](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/amopickupTengingar.svg)
 
 
-[Myndband af virkni]()
+[Myndband af virkni](https://youtu.be/NeMznGbVOKM)
 
 
 ## Dagbók
@@ -72,7 +72,7 @@ Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikm
 - verkefnalýsing ásamt skýringarmyndum og efnislista. - Búið
 - rafrásarteikning t.d með [Circuit Diagram](https://www.circuit-diagram.org/). - Búið
 - hönnunarteikningar (til prentunar) 2d og eða 3d teikningar og model (.stl skráin), ef það á við. - Búið
-- tengil á myndband (youtube) af notkun og virkni frumgerðar. - Vantar
+- tengil á myndband (youtube) af notkun og virkni frumgerðar. - Búið
 - tengla á kóðaskrár. - Búið
 - ljósmyndir af samsettningu á IoT búnað og tilraunum. - Semi búið hægt að bæta fleirum myndum af tilraunum.
 - helstu hönnunarákvarðanir, hvað var gert og heimildir. - Vantar
