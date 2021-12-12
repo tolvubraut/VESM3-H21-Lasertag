@@ -1,5 +1,8 @@
 # vesm3_lokaverkefni
 
+## Verkefnalýsing
+Vantar
+
 ## Efnislisti
 - ESP32D
 - LDR sensor
@@ -15,17 +18,20 @@
 
 [Server kóði fyrir vefappið](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/app.py)
 
-## Hönnunarteikningar fyrir laser skorun
+## Hönnunarteikningar, Rafrásateikningar og tenglar
+### Hönnunarteikningar
 [Byssa](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/gun.svg)
 
 [Kassi utan um ammo station](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/amohub.svg)
 
-
-## Síða
+### Síða
 [Síða notuð til að sýna gögn](https://flask-scoreboard.herokuapp.com/)
 
-## Ljósmynd af upsetningu á brauðbretti.
+### Ljósmynd af upsetningu á brauðbretti.
 ![Brauðbretti](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/myndir_mynbond/grunuppsetning.jpg)
+
+### Rafrásteikning
+[Teikning]()
 
 ## Dagbók
 
@@ -39,7 +45,7 @@
 ### Tími 4
 - En meiri tími í að laga galla og lóða allt saman.
 
-## Vandamál með verkefnið
+## Vandamál með verkefnið og Hönnunarákvarðanir.
 - Aðal vandamál var að finna út hvernig við mundum ná laserinum til að virka og með hvaða batterí við mundum þurfa til að þetta mundi virka, Kóðinn var líka smá vesenn þar sem við þurftum að nota marga staðla til að þetta mundi allt virka. Json í esp, MQTT til að stjórna leikinum, POST til að senda upplýsingarnar í síðuna og ágætlega mikinn tími lagðir í að setja upp millis fyrir ESP þannig að esp32d mundi ekki missa út af einhverju skilaboðum t.d. Reset skipunum eða Reload skipunum.
 
 # Skýrsla TODO
