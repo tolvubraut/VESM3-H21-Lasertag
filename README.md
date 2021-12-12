@@ -70,7 +70,7 @@ Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikm
 # Skýrsla TODO
 - Allur kóði, skrár og gögn. - Búið
 - verkefnalýsing ásamt skýringarmyndum og efnislista. - Búið
-- rafrásarteikning t.d með [Circuit Diagram](https://www.circuit-diagram.org/). - Vantar
+- rafrásarteikning t.d með [Circuit Diagram](https://www.circuit-diagram.org/). - Búið
 - hönnunarteikningar (til prentunar) 2d og eða 3d teikningar og model (.stl skráin), ef það á við. - Búið
 - tengil á myndband (youtube) af notkun og virkni frumgerðar. - Vantar
 - tengla á kóðaskrár. - Búið
