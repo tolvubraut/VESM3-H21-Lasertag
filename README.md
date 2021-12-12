@@ -30,8 +30,11 @@ Skotinn og lífið hjá leikmanni er sýnt á SSD1306 OLED skjá og þegar leikm
 
 [Kassi utan um ammo station - SVG](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/amohub.svg)
 
-### Ljósmynd af upsetningu á brauðbretti.
+### upsetningu á brauðbretti.
 ![Brauðbretti](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/myndir_mynbond/grunuppsetning.jpg)
+
+### Loka uppsettning byssu
+![byssa](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/byssa-uppsettnitg.jpg)
 
 ![Rafrásteikning-byssa](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/ByssuTenging.svg)
 ![Rafrásteikning-hub](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/amopickupTengingar.svg)
