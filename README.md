@@ -1,51 +1,3 @@
-<!-- setjið kóðann efst í README skrána. Í html skrá fer <styles> í <head> og <div> efst í <body> -->
-<style>
-    body {
-        margin-top:5em;
-    }
-    .headwrapper {
-        position:fixed ;
-        top:0;
-        left:0;
-        right:0;
-        height: 3.5em;
-        background-color: #fff; 
-        border: 0;   
-        box-shadow: 0 0 1em #ddd;
-        z-index:99;
-    }             
-    .headmenu {
-        width:100%;
-        padding: 0 1em;
-    } 
-    .logo  {
-        display: flex;
-        align-content: center;
-    }  
-    .logo a{
-        text-decoration: none;
-    }
-    .logo img{
-        width: 2.5em;
-        height: 3.5em;
-    }
-    .logotxt {   
-        color: #0B3E7A;
-        font-family: sans-serif;
-        text-decoration: none;
-        text-align: left;
-        padding-top:1.3em;
-    }
-</style>
-<div class="headwrapper">
-    <div class="headmenu"> 
-        <div class="logo"> 
-            <a href="https://tolvubraut.github.io/" title="Tölvubraut Tækniskólans"><img src="tskoli-logo.svg" title="Aftur á vef tölvubrautar"></a>  
-            <a href="https://tolvubraut.github.io/" title="Tölvubraut Tækniskólans" class="logotxt">TÖLVUBRAUT - <em>stúdentspróf</em></a>   
-        </div>
-    </div>
-</div> 
-
 # Vesm3 lokaverkefni - Sveinn og Bjartur
 
 ## Verkefnalýsing
@@ -55,6 +7,8 @@ Við bjuggum til prototípu af lasertag leik þar sem spilarar hafa byssu með t
 Grunnvirknin leiksins er sú að þegar byssa annað hvort skýtur eða er skotinn sendir hún uppfærðar upplýsingar um stöðu sína, i gegnum MQTT, á raspberry sem sér svo um að segja byssunum þegar leiknum er lokið og hvor vann eða tapaði. Raspberry'inn er líka skota pickup; ef maður notar öll skotinn sín þarf maður að fara að ná í fleiri skot. Það er gert með því að skanna byssuna með rfid'i sem er innbyggt í henni og þá sendir raspberryinn skilaboð til viðeigandi byssu um að endurstilla skotafjöldann. 
 
 Skotinn og lífið leikmanna er sýnt á SSD1306 OLED skjá og þegar leikmaður deyr eða er ekki með skot er hann látinn vita gegnum skjáinn, hvort hann tapaði/vann eða þarf að reloada.
+
+### [Myndband af virkni](https://youtu.be/NeMznGbVOKM)
 
 
 ## Efnislisti
@@ -86,12 +40,9 @@ Skotinn og lífið leikmanna er sýnt á SSD1306 OLED skjá og þegar leikmaður
 ### Loka uppsetning byssu
 ![byssa](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/byssa-uppsettnitg.jpg)
 
-### Rafrásar teikningar
+### Rafrásar teikningar (hvítar línur)
 ![Rafrásteikning-byssa](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/ByssuTenging.svg)
 ![Rafrásteikning-hub](https://github.com/sveinnoli/vesm3_lokaverkefni/blob/main/amopickupTengingar.svg)
-
-
-### [Myndband af virkni](https://youtu.be/NeMznGbVOKM)
 
 
 ## Dagbók
